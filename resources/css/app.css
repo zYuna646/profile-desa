@@ -1,9 +1,10 @@
+@import 'animations.css';
+@import 'page-load.css';
+@import 'aos-custom.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import 'animations.css';
-@import 'page-load.css';
 
 @layer components {
     .btn {
@@ -25,6 +26,30 @@
     .section-subtitle {
         @apply text-madang-700 max-w-2xl mx-auto;
     }
+}
+
+/* Sticky Navbar */
+.navbar-sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: rgba(232, 245, 233, 0.95); /* Madang-50 with opacity */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%;
+}
+
+.navbar-hidden {
+    transform: translateY(-100%);
+}
+
+/* Add padding to body when navbar is sticky to prevent content jump */
+body.has-sticky-nav {
+    padding-top: 4rem; /* Adjust based on your navbar height */
 }
 
 /* Custom Scrollbar */

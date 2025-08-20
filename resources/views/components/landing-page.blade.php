@@ -1,23 +1,24 @@
 <x-app-layout>
-    <div class="bg-madang-50 min-h-screen">
+    <div class="bg-madang-50 min-h-screen initial-animate animate">
         {{-- Hero Section --}}
         <x-hero 
-            title="{{ config('app.name', 'Village Website') }}"
-            subtitle="Selamat datang di website resmi desa kami. Temukan informasi terkini, layanan, dan potensi desa yang kami miliki."
+            title="{{ $generalSettings['village_name']->value ?? config('app.name', 'Village Website') }}"
+            subtitle="{{ $generalSettings['welcome_message']->value ?? 'Selamat datang di website resmi desa kami. Temukan informasi terkini, layanan, dan potensi desa yang kami miliki.' }}"
             image="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            class="hero-section hero-loaded animate-fade-in"
         >
-            <a href="#features" class="btn btn-primary animate-float">
+            <a href="#features" class="btn btn-primary animate-float animation-delay-500">
                 Jelajahi Desa
             </a>
-            <a href="#contact" class="btn btn-outline hover-scale">
+            <a href="#contact" class="btn btn-outline hover-scale animation-delay-1000">
                 Hubungi Kami
             </a>
         </x-hero>
 
         {{-- Stats Section --}}
-        <div class="bg-white py-12">
+        <div class="bg-white py-12 reveal-left">
             <div class="container mx-auto px-4">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stagger">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center stagger" data-aos="fade-up" data-aos-delay="300">
                     <div>
                         <div class="text-3xl font-bold text-madang-600 mb-2 animate-pulse-slow">1,234</div>
                         <div class="text-madang-800">Penduduk</div>
@@ -40,13 +41,14 @@
 
         {{-- Welcome Message Section --}}
         <x-welcome-message
-            name="Budi Santoso"
-            image="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            message="Selamat datang di website resmi desa kami. Sebagai Kepala Desa, saya mengucapkan terima kasih atas kunjungan Anda. Website ini merupakan sarana komunikasi dan transparansi informasi untuk seluruh masyarakat. Kami berkomitmen untuk terus meningkatkan pelayanan dan membangun desa yang maju, sejahtera, dan berkelanjutan. Mari bersama-sama membangun desa dengan semangat gotong royong dan kebersamaan."
+            name="{{ $generalSettings['village_chief_name']->value ?? 'Budi Santoso' }}"
+            image="{{ $generalSettings['village_chief_photo']->value ? asset('storage/' . $generalSettings['village_chief_photo']->value) : 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }}"
+            message="{{ $generalSettings['village_chief_greeting']->value ?? 'Selamat datang di website resmi desa kami. Sebagai Kepala Desa, saya mengucapkan terima kasih atas kunjungan Anda. Website ini merupakan sarana komunikasi dan transparansi informasi untuk seluruh masyarakat. Kami berkomitmen untuk terus meningkatkan pelayanan dan membangun desa yang maju, sejahtera, dan berkelanjutan. Mari bersama-sama membangun desa dengan semangat gotong royong dan kebersamaan.' }}"
+            class="reveal"
         />
 
         {{-- Organization Structure --}}
-        <x-organization-structure :officials="[
+        <x-organization-structure class="reveal-right" :officials="[
             [
                 'name' => 'Budi Santoso',
                 'position' => 'Kepala Desa',
@@ -75,47 +77,38 @@
         ]" />
 
         {{-- Village Map --}}
-        <x-village-map />
+        <x-village-map class="reveal" />
 
-        {{-- Features Section --}}
-        <div id="features" class="py-16 bg-gradient-to-b from-white to-madang-50">
+        {{-- Services Section --}}
+        @if($services->count() > 0)
+        <div id="services" class="py-16 bg-gradient-to-b from-white to-madang-50 reveal">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12 reveal">
-                    <h2 class="section-title">Layanan & Potensi Desa</h2>
-                    <p class="section-subtitle">Kami menyediakan berbagai layanan untuk masyarakat dan memiliki potensi desa yang dapat dikembangkan bersama.</p>
+                    <h2 class="section-title typing-animation">Layanan Desa</h2>
+                    <p class="section-subtitle">Kami menyediakan berbagai layanan untuk masyarakat desa.</p>
                 </div>
                 
-                <div class="grid md:grid-cols-3 gap-8 stagger">
-                    <x-feature-card 
-                        title="Potensi Desa" 
-                        description="Temukan berbagai potensi dan keunggulan desa kami yang siap untuk dikembangkan."
-                        icon='<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>'
-                    />
-                    
-                    <x-feature-card 
-                        title="Pembangunan" 
-                        description="Ikuti perkembangan dan pembangunan desa terkini untuk kemajuan bersama."
-                        icon='<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
-                        </svg>'
-                    />
-                    
-                    <x-feature-card 
-                        title="Layanan Masyarakat" 
-                        description="Akses berbagai layanan dan informasi penting untuk kebutuhan masyarakat."
-                        icon='<svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>'
-                    />
-                </div>
+                <x-slider-section :items="$services" title="Layanan Desa" type="services" />
             </div>
         </div>
+        @endif
+
+        {{-- Potentials Section --}}
+        @if($potentials->count() > 0)
+        <div id="potentials" class="py-16 bg-madang-50 reveal">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-12 reveal">
+                    <h2 class="section-title typing-animation">Potensi Desa</h2>
+                    <p class="section-subtitle">Temukan berbagai potensi dan keunggulan desa kami yang siap untuk dikembangkan.</p>
+                </div>
+                
+                <x-slider-section :items="$potentials" title="Potensi Desa" type="potentials" />
+            </div>
+        </div>
+        @endif
 
         {{-- News Section --}}
-        <x-news-section :news="[
+        <x-news-section class="reveal-left" :news="[
             [
                 'title' => 'Pembangunan Jalan Desa Tahap II Dimulai',
                 'excerpt' => 'Proyek pembangunan jalan desa tahap kedua telah dimulai dan diperkirakan selesai dalam 3 bulan ke depan.',
@@ -143,15 +136,15 @@
         ]" />
 
         {{-- Gallery Section --}}
-        <div class="py-16 bg-madang-50">
+        <div class="py-16 bg-madang-50 reveal">
             <div class="container mx-auto px-4">
                 <div class="text-center mb-12 reveal">
-                    <h2 class="section-title">Galeri Desa</h2>
+                    <h2 class="section-title typing-animation">Galeri Desa</h2>
                     <p class="section-subtitle">Keindahan dan keunikan desa kami terekam dalam gambar-gambar berikut.</p>
                 </div>
                 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger">
-                    <div class="relative overflow-hidden rounded-lg group">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 stagger" data-aos="zoom-in">
+                    <div class="relative overflow-hidden rounded-lg group hover-shadow card-3d">
                         <img src="https://images.unsplash.com/photo-1596392301391-76e3871b68c7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                              alt="Galeri Desa" 
                              class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
@@ -159,7 +152,7 @@
                             <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity text-lg font-bold">Pertanian</span>
                         </div>
                     </div>
-                    <div class="relative overflow-hidden rounded-lg group">
+                    <div class="relative overflow-hidden rounded-lg group hover-shadow card-3d">
                         <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                              alt="Galeri Desa" 
                              class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
@@ -167,7 +160,7 @@
                             <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity text-lg font-bold">Kerajinan</span>
                         </div>
                     </div>
-                    <div class="relative overflow-hidden rounded-lg group">
+                    <div class="relative overflow-hidden rounded-lg group hover-shadow card-3d">
                         <img src="https://images.unsplash.com/photo-1513862448120-a41616062133?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                              alt="Galeri Desa" 
                              class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
@@ -175,7 +168,7 @@
                             <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity text-lg font-bold">Budaya</span>
                         </div>
                     </div>
-                    <div class="relative overflow-hidden rounded-lg group">
+                    <div class="relative overflow-hidden rounded-lg group hover-shadow card-3d">
                         <img src="https://images.unsplash.com/photo-1594708053019-5c77bf30a055?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                              alt="Galeri Desa" 
                              class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
@@ -188,7 +181,7 @@
         </div>
 
         {{-- UMKM Section --}}
-        <x-umkm-section :umkm="[
+        <x-umkm-section class="reveal" data-aos="fade-up" :umkm="[
             [
                 'name' => 'Kerajinan Bambu Sejahtera',
                 'owner' => 'Pak Hadi',
@@ -233,30 +226,32 @@
                 title="Jadilah Bagian dari Kemajuan Desa"
                 subtitle="Mari Bergabung"
                 image="https://images.unsplash.com/photo-1596392301391-76e3871b68c7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                class="reveal-right"
+                data-aos="fade-left"
             >
-                <a href="#" class="btn btn-primary transform hover:-translate-y-1">
+                <a href="#" class="btn btn-primary animate-bounce-slow">
                     Hubungi Kami
                 </a>
-                <a href="#" class="bg-transparent border-2 border-madang-400 hover:border-madang-300 text-madang-300 font-medium px-8 py-3 rounded-full transition hover:bg-madang-900/50">
+                <a href="#" class="bg-transparent border-2 border-madang-400 hover:border-madang-300 text-madang-300 font-medium px-8 py-3 rounded-full transition hover:bg-madang-900/50 hover-glow animation-delay-500">
                     Pelajari Selengkapnya
                 </a>
             </x-cta-section>
         </div>
 
         {{-- Footer --}}
-        <footer class="bg-madang-900 text-white py-12">
+        <footer class="bg-madang-900 text-white py-12" data-aos="fade-up">
             <div class="container mx-auto px-4">
-                <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div class="grid md:grid-cols-3 gap-8 mb-8 stagger">
                     <div>
-                        <h3 class="text-xl font-bold mb-4 text-madang-200">{{ config('app.name', 'Village Website') }}</h3>
+                        <h3 class="text-xl font-bold mb-4 text-madang-200">{{ $generalSettings['village_name']->value ?? config('app.name', 'Village Website') }}</h3>
                         <p class="text-madang-300">Desa kami berkomitmen untuk memberikan pelayanan terbaik dan mengembangkan potensi desa bersama masyarakat.</p>
                     </div>
                     <div>
                         <h3 class="text-xl font-bold mb-4 text-madang-200">Kontak</h3>
                         <ul class="space-y-2 text-madang-300">
-                            <li>Jl. Desa No. 123</li>
-                            <li>desa@example.com</li>
-                            <li>+62 123 4567 890</li>
+                            <li>{{ $mapSettings['address']->value ?? 'Jl. Desa No. 123' }}</li>
+                            <li>{{ $generalSettings['email']->value ?? 'desa@example.com' }}</li>
+                            <li>{{ $generalSettings['phone']->value ?? '+62 123 4567 890' }}</li>
                         </ul>
                     </div>
                     <div>
@@ -269,8 +264,8 @@
                         </ul>
                     </div>
                 </div>
-                <div class="border-t border-madang-800 pt-6 text-center text-madang-400">
-                    <p>&copy; {{ date('Y') }} {{ config('app.name', 'Village Website') }}. Hak Cipta Dilindungi.</p>
+                <div class="border-t border-madang-800 pt-6 text-center text-madang-400 animate-fade-in animation-delay-1000">
+                    <p>&copy; {{ date('Y') }} {{ $generalSettings['village_name']->value ?? config('app.name', 'Village Website') }}. Hak Cipta Dilindungi.</p>
                 </div>
             </div>
         </footer>

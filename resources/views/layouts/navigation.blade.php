@@ -45,6 +45,10 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-dropdown-link :href="route('admin.dashboard')" class="hover:bg-madang-100">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+
                             <x-dropdown-link :href="route('profile.edit')" class="hover:bg-madang-100">
                                 {{ __('Profile') }}
                             </x-dropdown-link>
@@ -63,8 +67,8 @@
                         </x-slot>
                     </x-dropdown>
                 @else
-                    <a href="{{ route('dashboard') }}" class="text-sm text-white bg-madang-500 hover:bg-madang-600 px-4 py-2 rounded-md transition shadow-md">
-                        {{ __('Dashboard') }}
+                    <a href="{{ route('login') }}" class="text-sm text-white bg-madang-500 hover:bg-madang-600 px-4 py-2 rounded-md transition shadow-md">
+                        {{ __('Login') }}
                     </a>
                 @endauth
             </div>
@@ -103,6 +107,10 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
+                    <x-responsive-nav-link :href="route('admin.dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-responsive-nav-link>
+
                     <x-responsive-nav-link :href="route('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
@@ -122,8 +130,8 @@
         @else
             <div class="pt-4 pb-1 border-t border-madang-200">
                 <div class="px-4 space-y-1">
-                    <x-responsive-nav-link :href="route('dashboard')" class="bg-madang-500 text-white">
-                        {{ __('Dashboard') }}
+                    <x-responsive-nav-link :href="route('login')" class="bg-madang-500 text-white">
+                        {{ __('Login') }}
                     </x-responsive-nav-link>
                 </div>
             </div>
