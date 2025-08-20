@@ -1,11 +1,47 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@import 'animations.css';
+@import 'page-load.css';
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+@layer components {
+    .btn {
+        @apply px-6 py-3 rounded-lg transition duration-300 font-medium;
+    }
+    
+    .btn-primary {
+        @apply bg-madang-500 text-white hover:bg-madang-600 shadow-md hover:shadow-lg;
+    }
+    
+    .btn-outline {
+        @apply border-2 border-madang-500 text-madang-700 hover:bg-madang-100;
+    }
+    
+    .section-title {
+        @apply text-3xl font-bold text-madang-900 mb-4;
+    }
+    
+    .section-subtitle {
+        @apply text-madang-700 max-w-2xl mx-auto;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: theme('colors.madang.50');
+}
+
+::-webkit-scrollbar-thumb {
+    background: theme('colors.madang.300');
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.madang.400');
 }
