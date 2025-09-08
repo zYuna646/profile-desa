@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+  <rect width="400" height="600" fill="#E5E7EB"/>
+  <text x="200" y="300" font-family="Arial, sans-serif" font-size="24" fill="#6B7280" text-anchor="middle" dominant-baseline="middle">Perangkat Desa</text>
+  <path d="M200 200 C 180 200, 160 220, 160 250 C 160 280, 180 300, 200 300 C 220 300, 240 280, 240 250 C 240 220, 220 200, 200 200 M 160 320 C 160 320, 140 350, 140 400 C 140 420, 180 430, 200 430 C 220 430, 260 420, 260 400 C 260 350, 240 320, 240 320" fill="#6B7280"/>
+</svg>

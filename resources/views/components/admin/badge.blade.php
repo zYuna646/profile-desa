@@ -14,7 +14,7 @@
     ];
     
     $variantClasses = [
-        'primary' => 'bg-madang-100 text-madang-800 border border-madang-200',
+        'primary' => 'bg-jordy-blue-100 text-jordy-blue-800 border border-jordy-blue-200',
         'secondary' => 'bg-gray-100 text-gray-800 border border-gray-200',
         'success' => 'bg-green-100 text-green-800 border border-green-200',
         'danger' => 'bg-red-100 text-red-800 border border-red-200',

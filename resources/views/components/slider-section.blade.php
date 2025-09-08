@@ -22,8 +22,8 @@
                                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
                                         </div>
                                     @else
-                                        <div class="h-48 bg-indigo-100 flex items-center justify-center">
-                                            <i class="{{ $item->icon ?? ($type === 'services' ? 'fas fa-cog' : 'fas fa-chart-line') }} text-5xl text-indigo-500"></i>
+                                        <div class="h-48 bg-jordy-blue-100 flex items-center justify-center">
+                                            <i class="{{ $item->icon ?? ($type === 'services' ? 'fas fa-cog' : 'fas fa-chart-line') }} text-5xl text-jordy-blue-500"></i>
                                         </div>
                                     @endif
                                     <div class="p-6 flex-grow">
@@ -79,7 +79,7 @@
                             for (let i = 0; i < totalDots; i++) {
                                 const dot = document.createElement('button');
                                 dot.classList.add('slider-dot', 'w-3', 'h-3', 'rounded-full', 'bg-gray-300', 'focus:outline-none', 'transition-colors', 'duration-300');
-                                if (i === 0) dot.classList.add('bg-indigo-500');
+                                if (i === 0) dot.classList.add('bg-jordy-blue-500');
                                 
                                 dot.addEventListener('click', () => {
                                     goToSlide(i * itemsPerView);
@@ -97,10 +97,10 @@
                             dots.forEach((dot, i) => {
                                 if (i === activeDotIndex) {
                                     dot.classList.remove('bg-gray-300');
-                                    dot.classList.add('bg-indigo-500');
+                                    dot.classList.add('bg-jordy-blue-500');
                                 } else {
-                                    dot.classList.remove('bg-indigo-500');
-                                    dot.classList.add('bg-gray-300');
+                                     dot.classList.remove('bg-jordy-blue-500');
+                                     dot.classList.add('bg-gray-300');
                                 }
                             });
                         }

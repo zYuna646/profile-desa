@@ -38,7 +38,7 @@ class SettingController extends Controller
                     
                     // Validate file
                     $validator = Validator::make([$key => $file], [
-                        $key => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                        $key => 'image|mimes:jpeg,png,jpg,gif,svg',
                     ]);
                     
                     if ($validator->fails()) {

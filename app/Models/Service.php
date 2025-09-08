@@ -15,11 +15,22 @@ class Service extends Model
         'icon',
         'image',
         'order',
-        'is_active'
+        'is_active',
+        'service_template_id',
+        'template_data'
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
-        'order' => 'integer'
+        'order' => 'integer',
+        'template_data' => 'array'
     ];
+    
+    /**
+     * Get the template associated with this service.
+     */
+    public function template()
+    {
+        return $this->belongsTo(ServiceTemplate::class, 'service_template_id');
+    }
 }

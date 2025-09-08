@@ -18,14 +18,14 @@
     ];
     
     $variantClasses = [
-        'primary' => 'bg-madang-600 text-white hover:bg-madang-700 focus:ring-madang-500 shadow-md hover:shadow-lg',
-        'secondary' => 'bg-madang-100 text-madang-700 hover:bg-madang-200 focus:ring-madang-500 border border-madang-300',
+        'primary' => 'bg-jordy-blue-500 text-white hover:bg-jordy-blue-600 focus:ring-jordy-blue-400 shadow-md hover:shadow-lg',
+    'secondary' => 'bg-jordy-blue-100 text-jordy-blue-700 hover:bg-jordy-blue-200 focus:ring-jordy-blue-400 border border-jordy-blue-300',
         'success' => 'bg-green-600 text-white hover:bg-green-700 focus:ring-green-500 shadow-md hover:shadow-lg',
         'danger' => 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 shadow-md hover:shadow-lg',
         'warning' => 'bg-yellow-600 text-white hover:bg-yellow-700 focus:ring-yellow-500 shadow-md hover:shadow-lg',
         'info' => 'bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 shadow-md hover:shadow-lg',
-        'outline' => 'border-2 border-madang-600 text-madang-700 hover:bg-madang-50 focus:ring-madang-500',
-        'ghost' => 'text-madang-700 hover:bg-madang-100 focus:ring-madang-500'
+        'outline' => 'border-2 border-jordy-blue-500 text-jordy-blue-700 hover:bg-jordy-blue-50 focus:ring-jordy-blue-400',
+    'ghost' => 'text-jordy-blue-700 hover:bg-jordy-blue-100 focus:ring-jordy-blue-400'
     ];
     
     $classes = $baseClasses . ' ' . $sizeClasses[$size] . ' ' . $variantClasses[$variant];

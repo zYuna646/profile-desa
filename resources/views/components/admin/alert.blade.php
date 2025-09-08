@@ -12,14 +12,14 @@
         'success' => 'bg-green-50 border-green-200 text-green-800',
         'error' => 'bg-red-50 border-red-200 text-red-800',
         'warning' => 'bg-yellow-50 border-yellow-200 text-yellow-800',
-        'info' => 'bg-madang-50 border-madang-200 text-madang-800'
+        'info' => 'bg-jordy-blue-50 border-jordy-blue-200 text-jordy-blue-800'
     ];
     
     $iconClasses = [
         'success' => 'text-green-400',
         'error' => 'text-red-400',
         'warning' => 'text-yellow-400',
-        'info' => 'text-madang-400'
+        'info' => 'text-jordy-blue-400'
     ];
     
     $icons = [

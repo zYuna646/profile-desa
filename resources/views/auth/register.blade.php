@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-madang-800 mb-2">{{ __('Create Account') }}</h1>
-        <p class="text-madang-600">{{ __('Join our community today') }}</p>
+        <h1 class="text-2xl font-bold text-jordy-blue-800 mb-2">{{ __('Create Account') }}</h1>
+    <p class="text-jordy-blue-600">{{ __('Join our community today') }}</p>
     </div>
     
     <form method="POST" action="{{ route('register') }}" class="space-y-5">
@@ -52,9 +52,9 @@
             </x-primary-button>
         </div>
         
-        <div class="text-center mt-6 text-sm text-madang-600">
+        <div class="text-center mt-6 text-sm text-jordy-blue-600">
             {{ __('Already have an account?') }}
-            <a class="text-madang-700 hover:text-madang-800 hover:underline font-medium transition-all duration-300" href="{{ route('login') }}">
+            <a class="text-jordy-blue-700 hover:text-jordy-blue-800 hover:underline font-medium transition-all duration-300" href="{{ route('login') }}">
                 {{ __('Log in') }}
             </a>
         </div>

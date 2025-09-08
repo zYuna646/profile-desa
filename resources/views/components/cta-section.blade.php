@@ -1,6 +1,6 @@
 @props(['title', 'subtitle', 'image'])
 
-<div class="relative bg-madang-900 py-16 overflow-hidden">
+<div class="relative bg-jordy-blue-900 py-16 overflow-hidden">
     <!-- Background pattern -->
     <div class="absolute inset-0 opacity-5">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -15,9 +15,9 @@
     
     <div class="container mx-auto px-4 relative z-10">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="inline-block p-1 bg-gradient-to-r from-madang-300 to-madang-500 rounded-full mb-8">
-                <div class="bg-madang-900 px-6 py-2 rounded-full">
-                    <span class="text-madang-300 font-medium">{{ $subtitle }}</span>
+            <div class="inline-block p-1 bg-gradient-to-r from-jordy-blue-300 to-jordy-blue-500 rounded-full mb-8">
+                <div class="bg-jordy-blue-900 px-6 py-2 rounded-full">
+                    <span class="text-jordy-blue-300 font-medium">{{ $subtitle }}</span>
                 </div>
             </div>
             

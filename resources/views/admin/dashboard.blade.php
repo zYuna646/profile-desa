@@ -12,14 +12,14 @@
                 <!-- Stat Card 1 -->
                 <x-admin.card class="p-6">
                     <div class="flex items-center">
-                        <div class="p-3 rounded-full bg-madang-500 bg-opacity-75 text-white mr-4">
+                        <div class="p-3 rounded-full bg-jordy-blue-400 bg-opacity-75 text-white mr-4">
                             <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
                             </svg>
                         </div>
                         <div>
-                            <div class="text-sm font-medium text-madang-600 truncate">Total Pengguna</div>
-                            <div class="text-2xl font-semibold text-madang-900">12</div>
+                            <div class="text-sm font-medium text-jordy-blue-600 truncate">Total Pengguna</div>
+                    <div class="text-2xl font-semibold text-jordy-blue-900">{{ $stats['users'] }}</div>
                         </div>
                     </div>
                 </x-admin.card>
@@ -33,8 +33,8 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="text-sm font-medium text-madang-600 truncate">Total Berita</div>
-                            <div class="text-2xl font-semibold text-madang-900">8</div>
+                            <div class="text-sm font-medium text-jordy-blue-600 truncate">Total Berita</div>
+                    <div class="text-2xl font-semibold text-jordy-blue-900">{{ $stats['news'] }}</div>
                         </div>
                     </div>
                 </x-admin.card>
@@ -48,8 +48,8 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="text-sm font-medium text-madang-600 truncate">Total Layanan</div>
-                            <div class="text-2xl font-semibold text-madang-900">5</div>
+                            <div class="text-sm font-medium text-jordy-blue-600 truncate">Total Layanan</div>
+                    <div class="text-2xl font-semibold text-jordy-blue-900">{{ $stats['services'] }}</div>
                         </div>
                     </div>
                 </x-admin.card>
@@ -64,8 +64,8 @@
                             </svg>
                         </div>
                         <div>
-                            <div class="text-sm font-medium text-madang-600 truncate">Pengunjung Hari Ini</div>
-                            <div class="text-2xl font-semibold text-madang-900">24</div>
+                            <div class="text-sm font-medium text-jordy-blue-600 truncate">Pengunjung Hari Ini</div>
+                    <div class="text-2xl font-semibold text-jordy-blue-900">{{ $stats['visitors_today'] }}</div>
                         </div>
                     </div>
                 </x-admin.card>
@@ -76,23 +76,7 @@
                 <!-- Recent Activity -->
                 <x-admin.card title="Aktivitas Terbaru" class="lg:col-span-2">
                     <div class="space-y-4">
-                            <!-- Activity Item -->
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 mr-3">
-                                    <div class="h-10 w-10 rounded-full bg-indigo-500 flex items-center justify-center text-white">
-                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-900">Pengguna baru mendaftar</p>
-                                    <p class="text-sm text-gray-500">Ahmad Fauzi telah mendaftar sebagai pengguna baru</p>
-                                    <p class="text-xs text-gray-400 mt-1">2 jam yang lalu</p>
-                                </div>
-                            </div>
-
-                            <!-- Activity Item -->
+                            @forelse($recentActivities as $activity)
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 mr-3">
                                     <div class="h-10 w-10 rounded-full bg-green-500 flex items-center justify-center text-white">
@@ -103,26 +87,15 @@
                                 </div>
                                 <div>
                                     <p class="text-sm font-medium text-gray-900">Berita baru ditambahkan</p>
-                                    <p class="text-sm text-gray-500">Berita "Pembangunan Jalan Desa" telah dipublikasikan</p>
-                                    <p class="text-xs text-gray-400 mt-1">5 jam yang lalu</p>
+                                    <p class="text-sm text-gray-500">{{ $activity->description }}</p>
+                                    <p class="text-xs text-gray-400 mt-1">{{ $activity->created_at->diffForHumans() }}</p>
                                 </div>
                             </div>
-
-                            <!-- Activity Item -->
-                            <div class="flex items-start">
-                                <div class="flex-shrink-0 mr-3">
-                                    <div class="h-10 w-10 rounded-full bg-yellow-500 flex items-center justify-center text-white">
-                                        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                                <div>
-                                    <p class="text-sm font-medium text-gray-900">Komentar baru</p>
-                                    <p class="text-sm text-gray-500">Budi mengomentari berita "Pembangunan Jalan Desa"</p>
-                                    <p class="text-xs text-gray-400 mt-1">1 hari yang lalu</p>
-                                </div>
+                            @empty
+                            <div class="text-sm text-gray-500 text-center py-4">
+                                Tidak ada aktivitas terbaru
                             </div>
+                            @endforelse
                         </div>
                     </div>
                 </x-admin.card>
@@ -130,7 +103,7 @@
                 <!-- Quick Actions -->
                 <x-admin.card title="Aksi Cepat">
                         <div class="space-y-3">
-                            <a href="#" class="flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
+                            <a href="{{ route('admin.news.create') }}" class="flex items-center p-3 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors">
                                 <div class="flex-shrink-0 mr-3">
                                     <div class="h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

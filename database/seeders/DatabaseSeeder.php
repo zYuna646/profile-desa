@@ -26,6 +26,13 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             ServiceSeeder::class,
             PotentialSeeder::class,
+            NewsCategorySeeder::class,
+            NewsSeeder::class,
+            UmkmCategorySeeder::class,
+            UmkmSeeder::class,
+            StaffSeeder::class,
+            NavigationSeeder::class,
+            InfographicTypeSeeder::class,
         ]);
     }
 }

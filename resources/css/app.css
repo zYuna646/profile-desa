@@ -12,19 +12,19 @@
     }
     
     .btn-primary {
-        @apply bg-madang-500 text-white hover:bg-madang-600 shadow-md hover:shadow-lg;
+        @apply bg-jordy-blue-500 text-white hover:bg-jordy-blue-600 shadow-md hover:shadow-lg;
     }
     
     .btn-outline {
-        @apply border-2 border-madang-500 text-madang-700 hover:bg-madang-100;
+        @apply border-2 border-jordy-blue-500 text-jordy-blue-700 hover:bg-jordy-blue-100;
     }
     
     .section-title {
-        @apply text-3xl font-bold text-madang-900 mb-4;
+        @apply text-3xl font-bold text-jordy-blue-900 mb-4;
     }
     
     .section-subtitle {
-        @apply text-madang-700 max-w-2xl mx-auto;
+        @apply text-jordy-blue-700 max-w-2xl mx-auto;
     }
 }
 
@@ -35,7 +35,7 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background-color: rgba(232, 245, 233, 0.95); /* Madang-50 with opacity */
+    background-color: rgba(232, 240, 254, 0.95); /* Jordy-blue-50 with opacity */
     backdrop-filter: blur(5px);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     transform: translateY(0);
@@ -59,14 +59,14 @@ body.has-sticky-nav {
 }
 
 ::-webkit-scrollbar-track {
-    background: theme('colors.madang.50');
+    background: theme('colors.jordy-blue.50');
 }
 
 ::-webkit-scrollbar-thumb {
-    background: theme('colors.madang.300');
+    background: theme('colors.jordy-blue.300');
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: theme('colors.madang.400');
+    background: theme('colors.jordy-blue.400');
 }

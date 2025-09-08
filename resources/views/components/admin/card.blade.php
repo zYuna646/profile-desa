@@ -9,22 +9,22 @@
     'padding' => 'p-6'
 ])
 
-<div {{ $attributes->merge(['class' => "bg-white rounded-lg border border-madang-200 {$shadow} hover:shadow-lg transition-shadow duration-200"]) }}>
+<div {{ $attributes->merge(['class' => "bg-white rounded-lg border border-jordy-blue-200 {$shadow} hover:shadow-lg transition-shadow duration-200"]) }}>
     @if($title || $subtitle || $icon || isset($header))
-        <div class="border-b border-madang-100 px-6 py-4 {{ $headerClass }}">
+        <div class="border-b border-jordy-blue-100 px-6 py-4 {{ $headerClass }}">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     @if($icon)
-                        <div class="flex-shrink-0 text-madang-600">
+                        <div class="flex-shrink-0 text-jordy-blue-600">
                             {!! $icon !!}
                         </div>
                     @endif
                     <div>
                         @if($title)
-                            <h3 class="text-lg font-semibold text-madang-900">{{ $title }}</h3>
+                            <h3 class="text-lg font-semibold text-jordy-blue-900">{{ $title }}</h3>
                         @endif
                         @if($subtitle)
-                            <p class="text-sm text-madang-600 mt-1">{{ $subtitle }}</p>
+                            <p class="text-sm text-jordy-blue-600 mt-1">{{ $subtitle }}</p>
                         @endif
                     </div>
                 </div>
@@ -47,7 +47,7 @@
     </div>
 
     @isset($footer)
-        <div class="border-t border-madang-100 px-6 py-4 bg-madang-25 rounded-b-lg {{ $footerClass }}">
+        <div class="border-t border-jordy-blue-100 px-6 py-4 bg-jordy-blue-50 rounded-b-lg {{ $footerClass }}">
             {{ $footer }}
         </div>
     @endisset

@@ -46,7 +46,7 @@
                                     id="icon" 
                                     label="Icon (Font Awesome Class)" 
                                     value="{{ old('icon', 'fas fa-chart-line') }}" 
-                                    help="Contoh: fas fa-chart-line, fas fa-industry, dll. <a href='https://fontawesome.com/icons' target='_blank' class='text-madang-600 hover:text-madang-900'>Lihat daftar icon</a>" 
+                                    help="Contoh: fas fa-chart-line, fas fa-industry, dll. <a href='https://fontawesome.com/icons' target='_blank' class='text-jordy-blue-600 hover:text-jordy-blue-900'>Lihat daftar icon</a>" 
                                     :error="$errors->first('icon')" 
                                 />
                             </div>

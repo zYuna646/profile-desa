@@ -1,9 +1,9 @@
 <x-guest-layout>
     <div class="text-center mb-6">
-        <h1 class="text-2xl font-bold text-madang-800 mb-2">{{ __('Reset Password') }}</h1>
+        <h1 class="text-2xl font-bold text-jordy-blue-800 mb-2">{{ __('Reset Password') }}</h1>
     </div>
     
-    <div class="mb-6 text-sm text-madang-700 bg-madang-50 p-4 rounded-md border border-madang-200">
+    <div class="mb-6 text-sm text-jordy-blue-700 bg-jordy-blue-50 p-4 rounded-md border border-jordy-blue-200">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
@@ -26,8 +26,8 @@
             </x-primary-button>
         </div>
         
-        <div class="text-center mt-6 text-sm text-madang-600">
-            <a href="{{ route('login') }}" class="text-madang-700 hover:text-madang-800 hover:underline font-medium transition-all duration-300">
+        <div class="text-center mt-6 text-sm text-jordy-blue-600">
+            <a href="{{ route('login') }}" class="text-jordy-blue-700 hover:text-jordy-blue-800 hover:underline font-medium transition-all duration-300">
                 {{ __('Back to login') }}
             </a>
         </div>

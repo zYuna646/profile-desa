@@ -46,7 +46,7 @@
                                     id="icon" 
                                     label="Icon (Font Awesome Class)" 
                                     value="{{ old('icon', 'fas fa-cog') }}" 
-                                    help="Contoh: fas fa-cog, fas fa-users, dll. <a href='https://fontawesome.com/icons' target='_blank' class='text-madang-600 hover:text-madang-900'>Lihat daftar icon</a>" 
+                                    help="Contoh: fas fa-cog, fas fa-users, dll. <a href='https://fontawesome.com/icons' target='_blank' class='text-jordy-blue-600 hover:text-jordy-blue-900'>Lihat daftar icon</a>" 
                                     :error="$errors->first('icon')" 
                                 />
                             </div>
@@ -76,6 +76,22 @@
                                     <option value="0" {{ old('is_active', '1') == '0' ? 'selected' : '' }}>Tidak Aktif</option>
                                 </x-admin.input>
                             </div>
+                            
+                            <!-- Template -->
+                            <div>
+                                <x-admin.input 
+                                    type="select" 
+                                    name="service_template_id" 
+                                    id="service_template_id" 
+                                    label="Template Dokumen" 
+                                    :error="$errors->first('service_template_id')" 
+                                >
+                                    <option value="">-- Pilih Template --</option>
+                                    @foreach($templates as $template)
+                                        <option value="{{ $template->id }}" {{ old('service_template_id') == $template->id ? 'selected' : '' }}>{{ $template->name }}</option>
+                                    @endforeach
+                                </x-admin.input>
+                            </div>
                         </div>
                         
                         <!-- Description -->
@@ -92,11 +108,64 @@
                             />
                         </div>
                         
+                        <!-- Template Data -->
+                        <div class="mt-6" id="template-data-container" style="display: none;">
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Data Template</h3>
+                            <div class="bg-gray-50 p-4 rounded-md mb-4">
+                                <p class="text-sm text-gray-600">Isi data sesuai dengan template yang dipilih. Data ini akan digunakan untuk mengisi placeholder pada template dokumen.</p>
+                            </div>
+                            
+                            <div id="template-fields" class="space-y-4">
+                                <!-- Template fields will be dynamically added here -->
+                            </div>
+                        </div>
+                        
                         <div class="mt-6 flex justify-end">
                             <x-admin.button type="submit" variant="primary">
                                 Simpan Layanan
                             </x-admin.button>
                         </div>
+                        
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const templateSelect = document.getElementById('service_template_id');
+                                const templateDataContainer = document.getElementById('template-data-container');
+                                const templateFields = document.getElementById('template-fields');
+                                
+                                // Sample template placeholders (in real implementation, this would come from the server)
+                                const templatePlaceholders = {
+                                    // Template ID: [placeholders]
+                                    @foreach($templates as $template)
+                                    {{ $template->id }}: ['NAMA', 'KABUPATEN', 'TANGGAL', 'NOMOR_SURAT'],
+                                    @endforeach
+                                };
+                                
+                                templateSelect.addEventListener('change', function() {
+                                    const selectedTemplateId = this.value;
+                                    templateFields.innerHTML = '';
+                                    
+                                    if (selectedTemplateId && templatePlaceholders[selectedTemplateId]) {
+                                        templateDataContainer.style.display = 'block';
+                                        
+                                        templatePlaceholders[selectedTemplateId].forEach(placeholder => {
+                                            const fieldDiv = document.createElement('div');
+                                            fieldDiv.innerHTML = `
+                                                <label class="block text-sm font-medium text-gray-700">${placeholder}</label>
+                                                <input type="text" name="template_data[${placeholder}]" class="mt-1 focus:ring-jordy-blue-500 focus:border-jordy-blue-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" placeholder="Masukkan ${placeholder}">
+                                            `;
+                                            templateFields.appendChild(fieldDiv);
+                                        });
+                                    } else {
+                                        templateDataContainer.style.display = 'none';
+                                    }
+                                });
+                                
+                                // Initialize on page load
+                                if (templateSelect.value) {
+                                    templateSelect.dispatchEvent(new Event('change'));
+                                }
+                            });
+                        </script>
                     </form>
             </x-admin.card>
         </div>
