@@ -3,13 +3,11 @@
 namespace App\Http\Controllers\Landing;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
 use App\Models\ServiceTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\Settings;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 class ServiceController extends Controller
 {
@@ -91,8 +89,13 @@ class ServiceController extends Controller
         $templatePath = Storage::disk('public')->path($template->file_path);
         
         try {
-            // Configure PhpWord
+            // Configure PhpWord and environment
             Settings::setTempDir(sys_get_temp_dir());
+            
+            // Pastikan variabel HOME tersedia untuk Windows
+            if (!isset($_SERVER['HOME']) && !isset($_ENV['HOME'])) {
+                $_ENV['HOME'] = sys_get_temp_dir();
+            }
             
             // Load template
             $templateProcessor = new TemplateProcessor($templatePath);
@@ -101,23 +104,31 @@ class ServiceController extends Controller
             foreach ($template->variables as $variable) {
                 $fieldName = 'var_' . $variable['mark'];
                 $value = $request->input($fieldName, '');
-                $templateProcessor->setValue($variable['mark'], $value);
+                // Pastikan format variabel sesuai dengan yang ada di template Word
+                // Format variabel di Word biasanya ${VARIABLE} atau {VARIABLE}
+                $variableMark = $variable['mark'];
+                
+                // Coba beberapa format variabel yang umum digunakan
+                $templateProcessor->setValue($variableMark, $value); // Format: VARIABLE
+                $templateProcessor->setValue('${'.$variableMark.'}', $value); // Format: ${VARIABLE}
+                $templateProcessor->setValue('{'.$variableMark.'}', $value); // Format: {VARIABLE}
             }
             
-            // Generate filename
-            $filename = $template->name . '_' . date('YmdHis') . '.docx';
-            $outputPath = storage_path('app/public/generated/' . $filename);
+            // Generate filename for Word document
+            $docxFilename = $template->name . '_' . date('YmdHis') . '.docx';
+            $docxOutputPath = storage_path('app/public/generated/' . $docxFilename);
+            $outputDir = dirname($docxOutputPath);
             
             // Ensure directory exists
-            if (!file_exists(dirname($outputPath))) {
-                mkdir(dirname($outputPath), 0755, true);
+            if (!file_exists($outputDir)) {
+                mkdir($outputDir, 0755, true);
             }
             
-            // Save document
-            $templateProcessor->saveAs($outputPath);
+            // Save Word document
+            $templateProcessor->saveAs($docxOutputPath);
             
-            // Return download response
-            return response()->download($outputPath, $filename)->deleteFileAfterSend(true);
+            // Return download response for DOCX
+            return response()->download($docxOutputPath, $docxFilename)->deleteFileAfterSend(true);
             
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal membuat dokumen: ' . $e->getMessage());
